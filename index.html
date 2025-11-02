@@ -100,34 +100,27 @@
         <h4 class="mb-3">RSVP & Ucapan</h4>
 
         <!-- FORM: posts to Apps Script endpoint -->
-        <form id="rsvpForm"
-              action="https://script.google.com/macros/s/AKfycbzmg0tOscNC-UhEtMjrBV_26XbSVoTSl04HYVAp2BxCGTBmguJWgiPYgxkEhqqbXObZWQ/exec"
-              method="POST" target="hidden_iframe"
-              onsubmit="document.getElementById('formResponse').innerHTML = '<div class=\'alert alert-success\'>✅ Terima kasih! Ucapan anda telah dihantar.</div>'; this.reset();">
-          <div class="mb-2">
-            <label class="form-label">Nama Penuh <span class="text-danger">*</span></label>
-            <input name="nama" class="form-control" required>
-          </div>
+        <form action="https://script.google.com/macros/s/AKfycbzmg0tOscNC-UhEtMjrBV_26XbSVoTSl04HYVAp2BxCGTBmguJWgiPYgxkEhqqbXObZWQ/exec"
+            method="POST" target="hidden_iframe"
+            onsubmit="document.getElementById('formResponse').innerHTML='<div class=\'alert alert-success\'>✅ Terima kasih!</div>'; this.reset();">
+        <label>Nama</label>
+        <input name="nama" required class="form-control">
 
-          <div class="mb-2">
-            <label class="form-label">Bilangan Kehadiran <span class="text-danger">*</span></label>
-            <select name="bilangan" class="form-select" required>
-              <option value="">Pilih bilangan...</option>
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-            </select>
-          </div>
+        <label>Bilangan</label>
+        <select name="bilangan" class="form-select" required>
+          <option value="">Pilih...</option>
+          <option>1</option><option>2</option><option>3</option>
+        </select>
 
-          <div class="mb-3">
-            <label class="form-label">Ucapan</label>
-            <textarea name="ucapan" class="form-control" rows="3" placeholder="Tulis ucapan... (optional)"></textarea>
-          </div>
+        <label>Ucapan</label>
+        <textarea name="ucapan" rows="3" class="form-control"></textarea>
 
-          <button type="submit" class="btn btn-primary w-100">Hantar</button>
-        </form>
+        <button type="submit" class="btn btn-primary mt-3 w-100">Hantar</button>
+      </form>
 
-        <iframe name="hidden_iframe" style="display:none;" id="hidden_iframe"></iframe>
-        <div id="formResponse" class="mt-3"></div>
-      </div>
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
+      <div id="formResponse"></div>
+
 
       <!-- Live Ucapan list (fetched via GET to the same endpoint) -->
       <div class="bg-white rounded-2xl p-4 mb-4">
