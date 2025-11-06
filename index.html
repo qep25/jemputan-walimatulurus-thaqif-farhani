@@ -207,10 +207,10 @@
     }
 
     // Escape HTML to avoid XSS
-    // function escapeHtml(s){
-    //   if(!s) return '';
-    //   return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
-    // }
+    function escapeHtml(s){
+      if(!s) return '';
+      return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+    }
 
     // Refresh ucapan when iframe (form) loads (submission completed)
     document.getElementById('hidden_iframe').addEventListener('load', function(){
