@@ -154,7 +154,7 @@
           </div>
 
           <!-- Intro -->
-          <div class="bg-white rounded-4 p-4 mb-4 text-center">
+          <div id="intro" class="bg-white rounded-4 p-4 mb-4 text-center">
             <p class="mb-3">Assalamualaikum wbt & salam sejahtera,</p>
 
             <p class="fst-italic mb-3">
@@ -237,7 +237,7 @@
           </div>
 
           <!-- UCAPAN -->
-          <div id="ucapan" class="bg-white rounded-4 p-3 mb-4" id="ucapanListContainer">
+          <div id="ucapanLi" class="bg-white rounded-4 p-3 mb-4" id="ucapanListContainer">
             <h4 class="mb-3">Ucapan Daripada Tetamu</h4>
             <div id="ucapanList" class="small text-dark">
               <p>Memuatkan ucapan…</p>
@@ -257,7 +257,7 @@
 
           <!-- Contact -->
           <div class="bg-white rounded-4 p-3 text-center">
-            <p>Untuk pertanyaan: <a href="https://wa.me/601123456789" target="_blank" class="text-decoration-none">WhatsApp</a></p>
+            <p>Untuk pertanyaan: <a href="https://wa.me/601163501549" target="_blank" class="text-decoration-none">WhatsApp</a></p>
           </div>
 
         </div>
@@ -272,7 +272,7 @@
 
   <!-- BOTTOM NAVBAR -->
   <nav id="bottomNav" class="fixed-bottom d-flex justify-content-around py-2">
-    <a href="#main-card" class="text-center small fw-medium">
+    <a href="#intro" class="text-center small fw-medium">
       <div>🏠</div><span>Utama</span>
     </a>
     <a href="#butiran" class="text-center small fw-medium">
@@ -281,7 +281,7 @@
     <a href="#rsvp" class="text-center small fw-medium">
       <div>💌</div><span>RSVP</span>
     </a>
-    <a href="#ucapan" class="text-center small fw-medium">
+    <a href="#ucapanLi" class="text-center small fw-medium">
       <div>💖</div><span>Ucapan</span>
     </a>
     <a href="#salamKaut" class="text-center small fw-medium">
@@ -411,10 +411,10 @@
 
     function highlightCurrentSection() {
       const sections = [
-        { id: 'main-card', link: navLinks[0] },
+        { id: 'intro', link: navLinks[0] },
         { id: 'lokasi', link: navLinks[1] },
         { id: 'rsvp', link: navLinks[2] },
-        { id: 'ucapan', link: navLinks[3] },
+        { id: 'ucapanLi', link: navLinks[3] },
         { id: 'salamKaut', link: navLinks[4] }
       ];
 
