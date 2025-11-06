@@ -1,0 +1,174 @@
+:root { --card-bg: rgba(255,255,255,0.92); }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f7f5;
+    color: #1f2937;
+    scroll-behavior: smooth;
+}
+
+/* Hero section */
+.hero {
+    background: url('img/Bg.png') center center / cover no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+    z-index: 0;
+}
+.hero .content {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp .9s ease both;
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: none; }
+}
+
+.font-pinyon {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.overlay-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 6px 24px rgba(15,23,42,0.08);
+}
+
+/* Transparent button */
+.btn-transparent {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.9);
+    transition: .22s;
+}
+.btn-transparent:hover {
+    background: rgba(255,255,255,0.12);
+    transform: scale(1.03);
+}
+
+/* Music control */
+.music-control {
+    position: fixed;
+    right: 18px;
+    top: 18px;
+    z-index: 9999;
+}
+
+/* === Bottom Nav (Frosted Style) === */
+#bottomNav {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    z-index: 9998;
+}
+
+#bottomNav a {
+    flex: 1;
+    padding: 6px 0;
+    color: #1f2937;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+#bottomNav a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #db2777;
+    transform: scale(1.05);
+}
+#bottomNav a.active {
+    color: #f6b4c2;
+    font-weight: 600;
+    transform: scale(1.1);
+}
+#bottomNav a span {
+    display: block;
+    font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .font-pinyon { font-size: 2.6rem; }
+    .hero { padding: 2rem; }
+    #bottomNav a span { font-size: 0.7rem; }
+}
+
+#ucapanList {
+    max-height: 500px; /* adjust height if needed */
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+#ucapanList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#ucapanList::-webkit-scrollbar-thumb {
+    background-color: #f6b4c2;
+    border-radius: 4px;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Global Pastel Pink Theme === */
+.btn,
+.btn-primary,
+.btn-outline-primary,
+.btn-transparent {
+  background-color: #db2777 !important;
+  border-color: #db2777 !important;
+  color: #fff !important;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-outline-primary:hover,
+.btn-transparent:hover {
+  background-color: #f6b4c2 !important;
+  border-color: #f6b4c2 !important;
+  color: #fff !important;
+  transform: scale(1.03);
+}
+
+/* Outline style fix for secondary buttons (Google Maps, Waze, etc.) */
+.btn-outline-primary {
+  background-color: transparent !important;
+  color: #db2777 !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #db2777 !important;
+  color: #fff !important;
+}
+
+/* Transparent hero button */
+.btn-transparent {
+  background: rgba(246, 180, 194, 0.35) !important;
+  border: 2px solid #f6b4c2 !important;
+  color: #fff !important;
+}
+
+.btn-transparent:hover {
+  background: rgba(246, 180, 194, 0.55) !important;
+  border-color: #f28fa6 !important;
+}

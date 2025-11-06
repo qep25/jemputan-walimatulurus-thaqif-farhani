@@ -11,139 +11,12 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root { --card-bg: rgba(255,255,255,0.92); }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8f7f5;
-      color: #1f2937;
-      scroll-behavior: smooth;
-    }
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 
-    /* Hero section */
-    .hero {
-      background: url('img/Bg.png') center center / cover no-repeat;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      position: relative;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
-      z-index: 0;
-    }
-    .hero .content {
-      position: relative;
-      z-index: 2;
-      animation: fadeUp .9s ease both;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    .font-pinyon {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 4rem;
-      line-height: 1;
-    }
-
-    .overlay-card {
-      background: var(--card-bg);
-      border-radius: 1rem;
-      box-shadow: 0 6px 24px rgba(15,23,42,0.08);
-    }
-
-    /* Transparent button */
-    .btn-transparent {
-      background: transparent;
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.9);
-      transition: .22s;
-    }
-    .btn-transparent:hover {
-      background: rgba(255,255,255,0.12);
-      transform: scale(1.03);
-    }
-
-    /* Music control */
-    .music-control {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 9999;
-    }
-
-    /* === Bottom Nav (Frosted Style) === */
-    #bottomNav {
-      backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.7);
-      border-top: 1px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
-      transform: translateY(100%);
-      transition: transform 0.4s ease;
-      z-index: 9998;
-    }
-
-    #bottomNav a {
-      flex: 1;
-      padding: 6px 0;
-      color: #1f2937;
-      transition: all 0.25s ease;
-      text-decoration: none;
-    }
-    #bottomNav a:hover {
-      background: rgba(255, 255, 255, 0.3);
-      color: #db2777;
-      transform: scale(1.05);
-    }
-    #bottomNav a.active {
-      color: #f6b4c2;
-      font-weight: 600;
-      transform: scale(1.1);
-    }
-    #bottomNav a span {
-      display: block;
-      font-size: 0.75rem;
-    }
-
-    @media (max-width: 768px) {
-      .font-pinyon { font-size: 2.6rem; }
-      .hero { padding: 2rem; }
-      #bottomNav a span { font-size: 0.7rem; }
-    }
-
-    #ucapanList {
-      max-height: 250px; /* adjust height if needed */
-      overflow-y: auto;
-      padding-right: 6px;
-    }
-
-    #ucapanList::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    #ucapanList::-webkit-scrollbar-thumb {
-      background-color: #f6b4c2;
-      border-radius: 4px;
-    }
-
-    .fade-in {
-      animation: fadeIn 0.5s ease-in-out both;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-  </style>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/cbf0a68e47.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -160,10 +33,15 @@
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="content">
-      <h3 class="text-uppercase small mb-1">Walimatulurus</h3>
-      <h1 class="font-pinyon mb-1">Thaqif & Farhani</h1>
+      <h2 class="text-uppercase medium mb-1">Walimatulurus</h2>
+      <p></p>
+      <h1 class="font-pinyon mb-1">Thaqif</h1>
+      <h3 class="font-pinyon mb-2">&</h3>
+      <h1 class="font-pinyon mb-1">Farhani</h1>
+      <p></p>
       <p class="mb-2">6 Jun 2026 • #HANInoesQEP</p>
-      <button onclick="startMusicAndScroll()" class="btn btn-transparent px-4 py-2 rounded-pill">💌 Lihat Jemputan</button>
+      <p></p>
+      <button onclick="startMusicAndScroll()" class="btn btn-transparent px-4 py-2 rounded-pill"><i class="fa-solid fa-heart fa-beat-fade" style="color: #db2777;"></i> Lihat Jemputan</i></button>
     </div>
   </section>
 
@@ -196,9 +74,10 @@
             </p>
 
             <h5 class="fw-semibold text-uppercase mt-3 mb-1" style="color:#db2777;">DANIAL THAQIF BIN MOHAMED FIKRI</h5>
+            <p class="fst-italic text-muted small">Putera - Tuan Mohamed Fikri Bin Mohd Nor & Puan Nuriah Binti Muhammad</p>
             <span class="fw-semibold">&</span>
             <h5 class="fw-semibold text-uppercase mt-1 mb-3" style="color:#db2777;">NORFARHANI BINTI MOHD YUSOFF</h5>
-
+            <p class="fst-italic text-muted small">Puteri - Tuan Hj Mohd Yusoff bin Othman & Puan Hjh Ruziah binti Hamsan</p>
             <p class="mb-1">pada</p>
             <h5 class="fw-semibold mb-3">SABTU, 6 JUN 2026</h5>
 
@@ -211,78 +90,76 @@
             </p>
           </div>
 
-
           <!-- Butiran -->
           <div id="butiran" class="bg-white rounded-4 p-3 mb-4">
             <h4 class="mb-2">Butiran Majlis</h4>
             <ul class="mb-3 small list-unstyled">
-              <li><strong>Tarikh:</strong> Sabtu, 2 Mei 2026</li>
+              <li><strong>Hari:</strong> Sabtu</li>
+              <li><strong>Tarikh:</strong> 6 Jun 2026</li>
               <li><strong>Masa:</strong> 12:00 tengah hari – 4:00 petang</li>
               <li><strong>Tempat:</strong> KT Ballroom Shah Alam, Seksyen 24</li>
+              <li><strong>Alamat:</strong> No. 2 Jalan Pudina 24/39A, Seksyen 24 40300 Shah Alam, Selangor, Malaysia</li>
             </ul>
-            <div class="d-flex justify-content-center gap-2 flex-wrap">
-              <a href="#" class="btn btn-outline-primary" id="gmapBtn" target="_blank">Google Maps</a>
-              <a href="#" class="btn btn-outline-secondary" id="wazeBtn" target="_blank">Waze</a>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3787.084254070054!2d101.51743299678958!3d3.035533600000023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc52aad143c869%3A0xb18359a33914827b!2sKT%20Ballroom%20%E2%80%A2%20KWE%20Shah%20Alam!5e1!3m2!1sen!2smy!4v1762448442223!5m2!1sen!2smy"
+              width="100%" height="300" allowfullscreen loading="lazy"></iframe>
+            <div class="d-grid gap-2 flex-wrap">
+              <a href="#" class="btn btn-outline-primary" id="gmapBtn" target="_blank"><i class="bi bi-geo-alt-fill"></i> Google Maps</a>
+              <a href="#" class="btn btn-outline-primary" id="wazeBtn" target="_blank"><i class="fa-brands fa-waze"></i> Waze</a>
             </div>
           </div>
 
-          <!-- RSVP FORM -->
+          <!-- RSVP -->
           <div id="rsvp" class="bg-white rounded-4 p-3 mb-4">
-          <h4 class="mb-3">RSVP & Ucapan</h4>
-          <form id="rsvpForm"
-            action="https://script.google.com/macros/s/AKfycbx2IDA-6RXkLB8wu5OXi7m9j1GoZdXfjFBeZnYmHFx_MbtarnLJwEN54p8SRG2O7K4PlA/exec"
-            method="POST"
-            target="hidden_iframe"
-            onsubmit="handleSubmit(event)">
-
-            <!-- Nama -->
-            <div class="mb-3">
-              <label for="nama" class="form-label">Nama</label>
-              <input id="nama" name="nama" type="text" required class="form-control">
-            </div>
-
-            <!-- Kehadiran -->
-            <div class="mb-3">
-              <label class="form-label d-block" for="hadir">Kehadiran</label>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="hadir" id="hadirYa" value="Hadir" required>
-                <label class="form-check-label" for="hadirYa">Hadir</label>
+            <h4 class="mb-3">RSVP & Ucapan</h4>
+            <form id="rsvpForm"
+              action="https://script.google.com/macros/s/AKfycbx2IDA-6RXkLB8wu5OXi7m9j1GoZdXfjFBeZnYmHFx_MbtarnLJwEN54p8SRG2O7K4PlA/exec"
+              method="POST"
+              target="hidden_iframe"
+              onsubmit="handleSubmit(event)">
+              
+              <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input id="nama" name="nama" type="text" required class="form-control">
               </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="hadir" id="hadirTidak" value="Tidak Hadir" required>
-                <label class="form-check-label" for="hadirTidak">Tidak Hadir</label>
+
+              <div class="mb-3">
+                <label class="form-label d-block">Kehadiran</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="hadir" id="hadirYa" value="Hadir" required>
+                  <label class="form-check-label" for="hadirYa">Hadir</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="hadir" id="hadirTidak" value="Tidak Hadir" required>
+                  <label class="form-check-label" for="hadirTidak">Tidak Hadir</label>
+                </div>
               </div>
-            </div>
 
-            <!-- Bilangan -->
-            <div class="mb-3">
-              <label for="bilangan" class="form-label">Bilangan</label>
-              <select id="bilangan" name="bilangan" required class="form-select">
-                <option value="">Pilih...</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-            </div>
+              <div class="mb-3">
+                <label for="bilangan" class="form-label">Bilangan</label>
+                <select id="bilangan" name="bilangan" required class="form-select">
+                  <option value="">Pilih...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+              </div>
 
-            <!-- Ucapan -->
-            <div class="mb-3">
-              <label for="ucapan" class="form-label">Jika Ada Ucapan</label>
-              <textarea id="ucapan" name="ucapan" rows="3" class="form-control"></textarea>
-            </div>
+              <div class="mb-3">
+                <label for="ucapan" class="form-label">Jika Ada Ucapan</label>
+                <textarea id="ucapan" name="ucapan" rows="3" class="form-control"></textarea>
+              </div>
 
-            <button id="submitBtn" type="submit" class="btn btn-primary w-100">Hantar</button>
-          </form>
-
-          <div id="formResponse" class="mt-3"></div>
-          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-        </div>
+              <button id="submitBtn" type="submit" class="btn btn-primary w-100" style="background-color:#f6b4c2;">Hantar</button>
+            </form>
+            <div id="formResponse" class="mt-3"></div>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+          </div>
 
           <!-- UCAPAN -->
-          <div id="ucapanLi" class="bg-white rounded-4 p-3 mb-4" id="ucapanListContainer">
+          <div id="ucapanLi" class="bg-white rounded-4 p-3 mb-4">
             <h4 class="mb-3">Ucapan Daripada Tetamu</h4>
             <div id="ucapanList" class="small text-dark">
               <p>Memuatkan ucapan…</p>
@@ -291,18 +168,42 @@
 
           <!-- Salam Kaut -->
           <div id="salamKaut" class="bg-white rounded-4 p-3 mb-4 text-center">
-            <h5 class="mb-2">Salam Kaut & Hadiah</h5>
+            <h5 class="mb-2">Salam Kaut</h5>
             <p class="small mb-1"><strong>Bank Islam</strong></p>
             <p class="mb-1">No Akaun: <strong>12159020271854</strong></p>
             <p class="mb-1">Atas nama: <strong>Danial Thaqif bin Mohamed Fikri</strong></p>
             <div class="mt-3 d-flex justify-content-center">
-              <img src="img/QRCodeThaqif.jpg" alt="QR Thaqif" class="rounded shadow" style="width:120px;height:120px;object-fit:cover;">
+              <img src="img/QRCodeThaqif.jpg" alt="QR Thaqif" class="rounded shadow" style="width:300px;height:300px;object-fit:cover;">
             </div>
           </div>
 
           <!-- Contact -->
           <div class="bg-white rounded-4 p-3 text-center">
-            <p>Untuk pertanyaan: <a href="https://wa.me/601163501549" target="_blank" class="text-decoration-none">WhatsApp</a></p>
+            <p class="fw-semibold mb-2">Sebarang pertanyaan:</p>
+            <ul class="list-unstyled mb-0 small">
+              <li>
+                <strong>Thaqif</strong> 
+                <a href="https://wa.me/601163501549" target="_blank" class="text-decoration-none ms-1 text-success">
+                  <i class="bi bi-whatsapp"></i> 011-6350 1549
+                </a>
+                &nbsp;|&nbsp;
+                <strong>Ayah</strong> 
+                <a href="https://wa.me/60123456789" target="_blank" class="text-decoration-none ms-1 text-success">
+                  <i class="bi bi-whatsapp"></i> 012-345 6789
+                </a>
+              </li>
+              <li class="mt-2">
+                <strong>Hani</strong> 
+                <a href="https://wa.me/60178700381" target="_blank" class="text-decoration-none ms-1 text-success">
+                  <i class="bi bi-whatsapp"></i> 017-870 0381
+                </a>
+                &nbsp;|&nbsp;
+                <strong>Umi</strong> 
+                <a href="https://wa.me/601234454" target="_blank" class="text-decoration-none ms-1 text-success">
+                  <i class="bi bi-whatsapp"></i> 012-344 54
+                </a>
+              </li>
+            </ul>
           </div>
 
         </div>
@@ -315,228 +216,16 @@
     Made by Danial Thaqif © 2025
   </footer>
 
-  <!-- BOTTOM NAVBAR -->
+  <!-- NAV -->
   <nav id="bottomNav" class="fixed-bottom d-flex justify-content-around py-2">
-    <a href="#intro" class="text-center small fw-medium">
-      <div>🏠</div><span>Utama</span>
-    </a>
-    <a href="#butiran" class="text-center small fw-medium">
-      <div>📅</div><span>Butiran</span>
-    </a>
-    <a href="#rsvp" class="text-center small fw-medium">
-      <div>💌</div><span>RSVP</span>
-    </a>
-    <a href="#ucapanLi" class="text-center small fw-medium">
-      <div>💖</div><span>Ucapan</span>
-    </a>
-    <a href="#salamKaut" class="text-center small fw-medium">
-      <div>🎁</div><span>Salam Kaut</span>
-    </a>
+    <a href="#intro" class="text-center small fw-medium"><div>🏠</div><span>Utama</span></a>
+    <a href="#butiran" class="text-center small fw-medium"><div>📅</div><span>Butiran</span></a>
+    <a href="#rsvp" class="text-center small fw-medium"><div>💌</div><span>RSVP</span></a>
+    <a href="#ucapanLi" class="text-center small fw-medium"><div>💖</div><span>Ucapan</span></a>
+    <a href="#salamKaut" class="text-center small fw-medium"><div>🎁</div><span>Salam Kaut</span></a>
   </nav>
 
-
-  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    const SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbx2IDA-6RXkLB8wu5OXi7m9j1GoZdXfjFBeZnYmHFx_MbtarnLJwEN54p8SRG2O7K4PlA/exec";
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicToggle');
-    let isPlaying = false;
-
-    window.addEventListener('load', () => {
-      music.play().then(() => {
-        isPlaying = true;
-        musicBtn.textContent = '⏸ Pause';
-      }).catch(() => {
-        isPlaying = false;
-        musicBtn.textContent = '▶ Play';
-      });
-      loadUcapan();
-    });
-
-    musicBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        music.pause();
-        musicBtn.textContent = '▶ Play';
-      } else {
-        music.play().then(() => musicBtn.textContent = '⏸ Pause');
-      }
-      isPlaying = !isPlaying;
-    });
-
-    async function loadUcapan() {
-      const list = document.getElementById('ucapanList');
-      list.innerHTML = '<p>Memuatkan ucapan…</p>';
-
-      try {
-        const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(SCRIPT_ENDPOINT)}`, { cache: "no-store" });
-        const data = await res.json();
-
-        if (!data || !data.length) {
-          list.innerHTML = '<p>Tiada ucapan lagi.</p>';
-          return;
-        }
-
-        // ✅ Filter valid ucapan only (not empty or "-")
-        const validUcapan = data.filter(item =>
-          item.ucapan && item.ucapan.trim() !== '-' && item.ucapan.trim() !== ''
-        );
-
-        if (validUcapan.length === 0) {
-          list.innerHTML = '<p>Tiada ucapan lagi.</p>';
-          return;
-        }
-
-        // ✅ Reverse order (newest first) & show only latest 10
-        const latestTen = validUcapan.reverse().slice(0, 10);
-
-        // ✅ Display formatted list
-        list.innerHTML = latestTen.map(item => `
-          <div class="border-bottom pb-2 mb-2 fade-in">
-            <p class="mb-1"><em>${escapeHtml(item.ucapan)}</em></p>
-            <p class="mb-0 small fw-semibold text-muted">— ${escapeHtml(item.nama || '-')}</p>
-          </div>
-        `).join('');
-        list.scrollTop = 0;
-
-
-      } catch (err) {
-        console.error('Load ucapan error', err);
-        list.innerHTML = '<p>Gagal memuatkan ucapan.</p>';
-      }
-    }
-
-
-
-    function escapeHtml(s) {
-      if (!s) return '';
-      return s.replaceAll('&','&amp;')
-              .replaceAll('<','&lt;')
-              .replaceAll('>','&gt;')
-              .replaceAll('"','&quot;')
-              .replaceAll("'",'&#039;');
-    }
-
-    document.getElementById('hidden_iframe').addEventListener('load', function(){
-      setTimeout(loadUcapan, 800);
-    });
-
-    // === Handle Form Submission ===
-    function handleSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      const submitBtn = document.getElementById('submitBtn');
-      const resBox = document.getElementById('formResponse');
-
-      // Disable button + show loading spinner
-      submitBtn.disabled = true;
-      resBox.innerHTML = `
-        <div class="text-center mt-3 text-muted">
-          <div class="spinner-border spinner-border-sm" style="color:#f6b4c2;" role="status"></div>
-          <span class="ms-2">Sedang menghantar...</span>
-        </div>
-      `;
-
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        mode: "no-cors"
-      })
-      .then(() => {
-        resBox.innerHTML = '<div class="alert alert-success mt-3">✅ Terima kasih! Ucapan anda telah dihantar.</div>';
-        form.reset();
-        setTimeout(() => resBox.innerHTML = '', 20000);
-        submitBtn.disabled = false;
-        setTimeout(loadUcapan, 1000);
-      })
-      .catch(() => {
-        resBox.innerHTML = '<div class="alert alert-danger mt-3">❌ Tidak Dapat Menghantar (ERROR).</div>';
-        submitBtn.disabled = false;
-      });
-    }
-
-
-    // === Bottom Navigation Visibility & Active Highlight ===
-    const bottomNav = document.getElementById('bottomNav');
-    const navLinks = bottomNav.querySelectorAll('a');
-    let navVisible = false;
-
-    function showBottomNav() {
-      bottomNav.style.transform = 'translateY(0)';
-      navVisible = true;
-    }
-
-    function hideBottomNav() {
-      bottomNav.style.transform = 'translateY(100%)';
-      navVisible = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight * 0.4;
-
-      if (scrollY > heroHeight && !navVisible) showBottomNav();
-      else if (scrollY <= heroHeight && navVisible) hideBottomNav();
-
-      highlightCurrentSection();
-    });
-
-    function startMusicAndScroll() {
-      if (!isPlaying) {
-        music.play().then(() => {
-          isPlaying = true;
-          musicBtn.textContent = '⏸ Pause';
-        });
-      }
-      document.getElementById('main-card').scrollIntoView({ behavior: 'smooth' });
-      showBottomNav();
-    }
-
-    function highlightCurrentSection() {
-      const sections = [
-        { id: 'intro', link: navLinks[0] },
-        { id: 'lokasi', link: navLinks[1] },
-        { id: 'rsvp', link: navLinks[2] },
-        { id: 'ucapanLi', link: navLinks[3] },
-        { id: 'salamKaut', link: navLinks[4] }
-      ];
-
-      let scrollPos = window.scrollY + window.innerHeight / 2;
-      sections.forEach(({ id, link }) => {
-        const section = document.getElementById(id);
-        if (!section) return;
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          navLinks.forEach(a => a.classList.remove('active'));
-          link.classList.add('active');
-        }
-      });
-    }
-
-    // === Disable/Enable Bilangan Based on Kehadiran ===
-    const hadirRadios = document.querySelectorAll('input[name="hadir"]');
-    const bilanganSelect = document.getElementById('bilangan');
-
-    hadirRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (radio.value === "Tidak Hadir" && radio.checked) {
-          bilanganSelect.value = "";
-          bilanganSelect.disabled = true;
-          bilanganSelect.classList.add("bg-light");
-        } else if (radio.value === "Hadir" && radio.checked) {
-          bilanganSelect.disabled = false;
-          bilanganSelect.classList.remove("bg-light");
-        }
-      });
-    });
-
-
-    setInterval(loadUcapan, 30000);
-
-    document.getElementById('gmapBtn').href = 'https://maps.app.goo.gl/XZkmqM8EtiQRAhgU8';
-    document.getElementById('wazeBtn').href = 'https://ul.waze.com/ul?venue_id=66519070.665321776.636612&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location';
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
