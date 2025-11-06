@@ -203,41 +203,58 @@
 
           <!-- RSVP FORM -->
           <div id="rsvp" class="bg-white rounded-4 p-3 mb-4">
-            <h4 class="mb-3">RSVP & Ucapan</h4>
-            <form id="rsvpForm"
-              action="https://script.google.com/macros/s/AKfycbyiQAKOTPyWPS93ny7V4DBATyeWMUAqizKCPPJdGFrQ2TDmBj__-raDTWWyimZxd1TDSw/exec"
-              method="POST"
-              target="hidden_iframe"
-              onsubmit="handleSubmit(event)">
-              
-              <div class="mb-3">
-                <label for="nama" class="form-label">Nama</label>
-                <input id="nama" name="nama" type="text" required class="form-control">
-              </div>
+          <h4 class="mb-3">RSVP & Ucapan</h4>
+          <form id="rsvpForm"
+            action="https://script.google.com/macros/s/AKfycbx2IDA-6RXkLB8wu5OXi7m9j1GoZdXfjFBeZnYmHFx_MbtarnLJwEN54p8SRG2O7K4PlA/exec"
+            method="POST"
+            target="hidden_iframe"
+            onsubmit="handleSubmit(event)">
 
-              <div class="mb-3">
-                <label for="bilangan" class="form-label">Bilangan</label>
-                <select id="bilangan" name="bilangan" required class="form-select">
-                  <option value="">Pilih...</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                </select>
-              </div>
+            <!-- Nama -->
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input id="nama" name="nama" type="text" required class="form-control">
+            </div>
 
-              <div class="mb-3">
-                <label for="ucapan" class="form-label">Ucapan</label>
-                <textarea id="ucapan" name="ucapan" rows="3" class="form-control"></textarea>
+            <!-- Kehadiran -->
+            <div class="mb-3">
+              <label class="form-label d-block" for="hadir">Kehadiran</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hadir" id="hadirYa" value="Hadir" required>
+                <label class="form-check-label" for="hadirYa">Hadir</label>
               </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hadir" id="hadirTidak" value="Tidak Hadir" required>
+                <label class="form-check-label" for="hadirTidak">Tidak Hadir</label>
+              </div>
+            </div>
 
-              <button type="submit" class="btn btn-primary w-100">Hantar</button>
-            </form>
-            <div id="formResponse" class="mt-3"></div>
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-          </div>
+            <!-- Bilangan -->
+            <div class="mb-3">
+              <label for="bilangan" class="form-label">Bilangan</label>
+              <select id="bilangan" name="bilangan" required class="form-select">
+                <option value="">Pilih...</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+
+            <!-- Ucapan -->
+            <div class="mb-3">
+              <label for="ucapan" class="form-label">Jika Ada Ucapan</label>
+              <textarea id="ucapan" name="ucapan" rows="3" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Hantar</button>
+          </form>
+
+          <div id="formResponse" class="mt-3"></div>
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        </div>
 
           <!-- UCAPAN -->
           <div id="ucapanLi" class="bg-white rounded-4 p-3 mb-4" id="ucapanListContainer">
@@ -297,7 +314,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    const SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbyiQAKOTPyWPS93ny7V4DBATyeWMUAqizKCPPJdGFrQ2TDmBj__-raDTWWyimZxd1TDSw/exec";
+    const SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbx2IDA-6RXkLB8wu5OXi7m9j1GoZdXfjFBeZnYmHFx_MbtarnLJwEN54p8SRG2O7K4PlA/exec";
     const music = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicToggle');
     let isPlaying = false;
@@ -357,16 +374,19 @@
       setTimeout(loadUcapan, 800);
     });
 
+    // === Handle Form Submission ===
     function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
+      const submitBtn = document.getElementById('submitBtn');
       const resBox = document.getElementById('formResponse');
 
-      // Show loading animation
+      // Disable button + show loading spinner
+      submitBtn.disabled = true;
       resBox.innerHTML = `
         <div class="text-center mt-3 text-muted">
-          <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
-          <span>Sedang menghantar...</span>
+          <div class="spinner-border spinner-border-sm" style="color:#f6b4c2;" role="status"></div>
+          <span class="ms-2">Sedang menghantar...</span>
         </div>
       `;
 
@@ -376,16 +396,15 @@
         mode: "no-cors"
       })
       .then(() => {
-        // Show success message after loading
         resBox.innerHTML = '<div class="alert alert-success mt-3">✅ Terima kasih! Ucapan anda telah dihantar.</div>';
-        setTimeout(() => resBox.innerHTML = '', 20000);
-
         form.reset();
+        setTimeout(() => resBox.innerHTML = '', 20000);
+        submitBtn.disabled = false;
         setTimeout(loadUcapan, 1000);
       })
       .catch(() => {
-        // Show error message if fail
         resBox.innerHTML = '<div class="alert alert-danger mt-3">❌ Tidak Dapat Menghantar (ERROR).</div>';
+        submitBtn.disabled = false;
       });
     }
 
@@ -447,6 +466,24 @@
         }
       });
     }
+
+    // === Disable/Enable Bilangan Based on Kehadiran ===
+    const hadirRadios = document.querySelectorAll('input[name="hadir"]');
+    const bilanganSelect = document.getElementById('bilangan');
+
+    hadirRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === "Tidak Hadir" && radio.checked) {
+          bilanganSelect.value = "";
+          bilanganSelect.disabled = true;
+          bilanganSelect.classList.add("bg-light");
+        } else if (radio.value === "Hadir" && radio.checked) {
+          bilanganSelect.disabled = false;
+          bilanganSelect.classList.remove("bg-light");
+        }
+      });
+    });
+
 
     setInterval(loadUcapan, 30000);
 
