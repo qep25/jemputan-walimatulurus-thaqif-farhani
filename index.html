@@ -343,23 +343,39 @@
     async function loadUcapan() {
       const list = document.getElementById('ucapanList');
       list.innerHTML = '<p>Memuatkan ucapan…</p>';
+
       try {
         const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(SCRIPT_ENDPOINT)}`, { cache: "no-store" });
         const data = await res.json();
+
         if (!data || !data.length) {
           list.innerHTML = '<p>Tiada ucapan lagi.</p>';
           return;
         }
-        list.innerHTML = data.map(item => `
+
+        // ✅ Filter only valid ucapan (not empty or '-')
+        const validUcapan = data.filter(item =>
+          item.ucapan && item.ucapan.trim() !== '-' && item.ucapan.trim() !== ''
+        );
+
+        if (validUcapan.length === 0) {
+          list.innerHTML = '<p>Tiada ucapan lagi.</p>';
+          return;
+        }
+
+        // ✅ Display valid ucapan only
+        list.innerHTML = validUcapan.map(item => `
           <div class="border-bottom pb-2 mb-2">
-            <p class="mb-1"><em>${escapeHtml(item.ucapan || '-')}</em></p>
-            <p class="mb-0 small fw-semibold">— ${escapeHtml(item.nama || '-')}</p>
+            <p class="mb-1"><em>${escapeHtml(item.ucapan)}</em></p>
+            <p class="mb-0 small fw-semibold text-muted">— ${escapeHtml(item.nama || '-')}</p>
           </div>
         `).join('');
-      } catch {
+      } catch (err) {
+        console.error('Load ucapan error', err);
         list.innerHTML = '<p>Gagal memuatkan ucapan.</p>';
       }
     }
+
 
     function escapeHtml(s) {
       if (!s) return '';
