@@ -10,9 +10,9 @@ window.addEventListener('load', async () => {
     music.volume = 0; // start silent
     await music.play();
     isPlaying = true;
-    musicBtn.textContent = <i class="fa-solid fa-pause" style="color: #ffffffff;"></i>;
+    musicBtn.textContent = '❚❚';
   } catch (err) {
-    musicBtn.textContent = <i class="fa-solid fa-play" style="color: #ffffffff;"></i>;
+    musicBtn.textContent = '▶';
   }
   loadUcapan();
 });
@@ -22,11 +22,11 @@ musicBtn.addEventListener('click', () => {
   hasInteracted = true;
   if (isPlaying) {
     music.pause();
-    musicBtn.textContent = <i class="fa-solid fa-play" style="color: #ffffffff;"></i>;
+    musicBtn.textContent = '▶';
   } else {
     music.muted = false;
     fadeInMusic();
-    musicBtn.textContent = <i class="fa-solid fa-pause" style="color: #ffffffff;"></i>;
+    musicBtn.textContent = '❚❚';
   }
   isPlaying = !isPlaying;
 });
@@ -53,7 +53,7 @@ function startMusicAndScroll() {
   if (!isPlaying) {
     fadeInMusic();
     isPlaying = true;
-    musicBtn.textContent = <i class="fa-solid fa-pause" style="color: #ffffffff;"></i>;
+    musicBtn.textContent = '❚❚';
   }
   enableScroll(); // ✅ Allow scrolling now
   document.getElementById('main-card').scrollIntoView({ behavior: 'smooth' });
@@ -72,10 +72,11 @@ function enableScroll() {
 // ✅ Check scroll position when page loads
 window.addEventListener('load', () => {
   // If user starts near top (hero section), disable scroll
-  if (window.scrollY < window.innerHeight * 1) {
+  if (window.scrollY < window.innerHeight * 0.5) {
     disableScroll();
   } else {
     enableScroll(); // If refresh mid-page, allow scroll
+    musicBtn.textContent = '▶';
   }
 });
 

@@ -87,6 +87,10 @@ body.no-scroll {
     z-index: 9999;
 }
 
+.music-control .btn {
+    border-radius: 100%;
+}
+
 /* === Bottom Nav (Frosted Style) === */
 #bottomNav {
     backdrop-filter: blur(12px);
