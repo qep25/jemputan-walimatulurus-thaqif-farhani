@@ -72,7 +72,7 @@ function enableScroll() {
 // ✅ Check scroll position when page loads
 window.addEventListener('load', () => {
   // If user starts near top (hero section), disable scroll
-  if (window.scrollY < window.innerHeight * 0.5) {
+  if (window.scrollY < window.innerHeight * 1) {
     disableScroll();
   } else {
     enableScroll(); // If refresh mid-page, allow scroll
