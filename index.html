@@ -12,29 +12,14 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- FontAwesome -->
-  <script src="https://kit.fontawesome.com/cbf0a68e47.js" crossorigin="anonymous"></script>
-
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/cbf0a68e47.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-  <!-- COVER SECTION -->
-  <section id="coverSection" class="cover-section">
-    <img src="img/intro.png" alt="Cover Invitation" class="cover-image">
-    <button id="openInviteBtn" class="cover-button" aria-label="Open Invitation"></button>
-  </section>
-
-  <!-- OPTIONAL INTRO VIDEO -->
-  <section id="videoSection" class="video-section">
-    <video id="introVideo" preload="auto" playsinline>
-      <source src="img/Intro.mp4" type="video/mp4">
-    </video>
-  </section>
 
   <!-- AUDIO -->
   <audio id="bgMusic" autoplay muted loop>
@@ -43,7 +28,7 @@
 
   <!-- MUSIC CONTROL -->
   <div class="music-control">
-    <button id="musicToggle" class="btn btn-transparent btn-sm btn-outline-dark rounded-circle">▶</button>
+    <button id="musicToggle" class="btn btn-transparent btn-sm btn-outline-dark rounded-circles">▶</button>
   </div>
 
   <!-- HERO SECTION -->
@@ -55,9 +40,7 @@
       <p></p>
       <p class="mb-2">6 Jun 2026 • #HANInoesQEP</p>
       <p></p>
-      <button onclick="startMusicAndScroll()" class="btn btn-transparent px-4 py-2 rounded-pill">
-        <i class="fa-solid fa-heart fa-beat-fade fa-lg" style="color: #db2777;"></i><br>Lihat Jemputan
-      </button>
+      <button onclick="startMusicAndScroll()" class="btn btn-transparent px-4 py-2 rounded-pill"><i class="fa-solid fa-heart fa-beat-fade fa-lg" style="color: #db2777;"></i><br>Lihat Jemputan</i></button>
     </div>
   </section>
 
@@ -87,6 +70,7 @@
             <h6 class="fw-semibold text-uppercase mb-3" style="color:#db2777;">&amp;</h6>
             <h5 class="fw-semibold text-uppercase mb-4" style="color:#db2777;">NURIAH BINTI MUHAMMAD</h5>
             
+
             <p class="mb-3">Dengan penuh kesyukuran menjemput<br>
               <strong>Dato’ | Datin | Tuan | Puan | Encik | Cik</strong><br>
               ke majlis perkahwinan anak lelaki kami
@@ -101,6 +85,7 @@
               moga bersatu doa dan restu dalam kasih Ilahi.
             </p>
           </div>
+
 
           <!-- Butiran -->
           <div id="butiran" class="bg-white rounded-4 p-3 mb-4">
@@ -237,7 +222,6 @@
     <a href="#salamKaut" class="text-center small fw-medium"><div>🎁</div><span>Salam Kaut</span></a>
   </nav>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
