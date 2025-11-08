@@ -22,13 +22,13 @@ openInviteBtn?.addEventListener('click', () => {
   coverSection.classList.add('fade-out');
   setTimeout(() => {
     coverSection.style.display = 'none';
-    fadeInMusic();
+
     // If video exists, show & play
     if (introVideo) {
       videoSection.style.display = 'block';
       introVideo.play().catch(() => {});
     } else {
-      
+      fadeInMusic();
       enableScroll();
       document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
       sessionStorage.setItem('hasSeenIntro', 'true');
@@ -41,7 +41,7 @@ introVideo?.addEventListener('ended', () => {
   videoSection.classList.add('fade-out');
   setTimeout(() => {
     videoSection.style.display = 'none';
-    // fadeInMusic();
+    fadeInMusic();
     enableScroll();
     document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
     sessionStorage.setItem('hasSeenIntro', 'true');
