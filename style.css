@@ -1,9 +1,12 @@
-:root { --card-bg: rgba(255,255,255,0.92); }
+:root { 
+  --card-bg: rgba(255,255,255,0.92); 
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #f8f7f5;
-    color: #1f2937;
-    scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+  background: #f8f7f5;
+  color: #1f2937;
+  scroll-behavior: smooth;
 }
 
 /* Disable scroll initially */
@@ -12,47 +15,118 @@ body.no-scroll {
   height: 100vh;
 }
 
-/* Hero section */
+
+/* ==========================================================
+   💌 COVER IMAGE INTRO (Fixed Full-Screen Display)
+========================================================== */
+.cover-section {
+  position: fixed;
+  inset: 0;
+  /* width: 100%; */
+  height: 100%; /* full screen height */
+  background: #f6b4c2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10000;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* 🔧 Adjust how the image scales to always fit perfectly */
+.cover-image {
+  /* width: 100%; */
+  height: 100%;
+  object-fit: cover; /* fills entire screen */
+  object-position: center center;
+  transform: scale(1.05); /* slight zoom for full bleed */
+}
+
+/* Makes the whole image clickable */
+.cover-button {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* ==========================================================
+   🎬 INTRO VIDEO SECTION (Centered, Full-Screen, Pastel Background)
+========================================================== */
+.video-section {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh; /* Full screen */
+  background: #f6b4c2; /* Same pastel pink as cover */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Centered video, scaled to fit nicely without cropping */
+.video-section video {
+  /* max-width: 100%; */
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* shows full video */
+  object-position: center center;
+  background-color: #f6b4c2; /* fallback color */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* ==========================================================
+   💐 HERO SECTION (Full Height, Background Always 100%)
+========================================================== */
 .hero {
-    background: url('img/Bg.png') center center / cover no-repeat;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* 👈 move content to the top */
-    text-align: center;
-    color: #ffffff;
-    position: relative;
-    padding-top: 10rem; /* 👈 add spacing from the top */
+  background: url('img/Bg.png') center center / cover no-repeat;
+  height: 100vh; /* Full height of screen */
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
+  /* justify-content: center; Center vertically */
+  align-items: center;     /* Center horizontally */
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
-    z-index: 0;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+  z-index: 0;
 }
 
 .hero .content {
-    position: relative;
-    z-index: 2;
-    animation: fadeUp 2s ease-in-out both; /* 👈 smoother, slower fade-in */
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 2s ease-in-out both;
 }
 
+
 @keyframes fadeUp {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateY(10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  0% { opacity: 0; transform: translateY(40px); }
+  50% { opacity: 0.5; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
+
+/* Smooth fade-out for cover/video */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
 
 .font-pinyon {
     font-family: 'Pinyon Script', cursive;
