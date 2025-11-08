@@ -215,51 +215,50 @@ body.no-scroll {
 
 
 /* === INTRO COVER & VIDEO FINAL FIX === */
+/* full-screen cover + video */
 .cover-section,
 .video-section {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #f6b4c2;
+  background-color: #f6b4c2; /* pastel pink background */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 99999;
   overflow: hidden;
 }
 
-/* Image perfectly fits 1080x1920 scale */
-.cover-image {
+/* image/video scale to fill while preserving aspect ratio
+   use object-fit: cover to avoid black bars and match hero scale */
+.cover-image,
+#introVideo {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* show entire image */
-  background-color: #f6b4c2;
+  object-fit: cover;
   object-position: center;
+  display: block;
+  background-color: #f6b4c2;
 }
 
-/* Invisible clickable area */
+/* invisible full-screen button to catch clicks/taps */
 .cover-button {
   position: absolute;
   inset: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  z-index: 10001;
+  z-index: 100000;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Full video scaling fix */
-.video-section video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* ✅ show full portrait video */
-  object-position: center;
-  background-color: #f6b4c2;
-}
-
-/* Fade transition */
+/* fade transitions */
 .fade-out {
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 0.8s ease;
+}
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.8s ease;
 }
