@@ -1,43 +1,97 @@
 // === INTRO VIDEO LOGIC ===
-const coverSection = document.getElementById('coverSection');
-const coverButton = document.getElementById('coverButton');
-const videoSection = document.getElementById('videoSection');
-const introVideo = document.getElementById('introVideo');
-const heroSection = document.querySelector('.hero');
+document.addEventListener('DOMContentLoaded', () => {
+  const coverSection = document.getElementById('coverSection');
+  const coverButton = document.getElementById('coverButton');
+  const videoSection = document.getElementById('videoSection');
+  const introVideo = document.getElementById('introVideo');
+  const heroSection = document.querySelector('.hero');
+  const music = document.getElementById('bgMusic');
 
-coverButton.addEventListener('click', async () => {
-  try {
-    // Hide intro image, show video
+  if (!coverSection || !coverButton || !videoSection || !introVideo || !heroSection) {
+    console.warn('Intro elements not found - skipping intro logic');
+    return;
+  }
+
+  // Debug helper
+  console.log('Intro ready — waiting for user click');
+
+  // Ensure video is muted (allows play on user click)
+  introVideo.muted = true;
+  introVideo.playsInline = true;
+
+  // Click / touch handler
+  function handleCoverClick(e) {
+    e.preventDefault();
+    console.log('Cover clicked — starting sequence');
+
+    // fade out cover image
     coverSection.classList.add('fade-out');
+
+    // after fade hide cover and show video
     setTimeout(() => {
       coverSection.style.display = 'none';
       videoSection.style.display = 'flex';
-      introVideo.play().catch(() => skipVideo()); // Try play, else skip
-    }, 600);
-  } catch {
-    skipVideo();
+      // ensure visible + fade-in
+      videoSection.classList.remove('fade-out');
+      videoSection.classList.add('fade-in');
+
+      // attempt to play video; fallback to skipVideo on error
+      introVideo.currentTime = 0;
+      introVideo.play().then(() => {
+        console.log('Video playing');
+      }).catch((err) => {
+        console.warn('Video play failed, skipping to hero', err);
+        skipVideo();
+      });
+
+      // if you want the music to start on click as well (unmute and fade), start here:
+      // unmute/fade after user interaction so browsers allow it
+      try {
+        music.muted = false;
+        music.play().catch(()=>{});
+      } catch(e) { /* ignore */ }
+    }, 650);
+  }
+
+  coverButton.addEventListener('click', handleCoverClick);
+  coverButton.addEventListener('touchstart', handleCoverClick);
+
+  // When video finishes: hide video, show hero, enable scroll and start music fade
+  introVideo.addEventListener('ended', () => {
+    console.log('Video ended — switching to hero');
+    videoSection.classList.add('fade-out');
+    setTimeout(() => {
+      videoSection.style.display = 'none';
+      // reveal hero and allow scroll (your existing enableScroll function)
+      if (typeof enableScroll === 'function') enableScroll();
+      // optional: scroll to main-card or hero
+      heroSection.scrollIntoView({ behavior: 'smooth' });
+      // unmute and fade music in (if you have fadeInMusic)
+      if (typeof fadeInMusic === 'function') fadeInMusic();
+    }, 800);
+  });
+
+  // If video fails, skip directly to hero
+  function skipVideo() {
+    try {
+      coverSection.style.display = 'none';
+      videoSection.style.display = 'none';
+      if (typeof enableScroll === 'function') enableScroll();
+      heroSection.scrollIntoView({ behavior: 'smooth' });
+      if (typeof fadeInMusic === 'function') fadeInMusic();
+      console.log('Skipped video, showed hero');
+    } catch (err) {
+      console.error('skipVideo error', err);
+    }
+  }
+
+  // OPTIONAL: If user refreshes and is already scrolled past hero, hide cover immediately
+  if (window.scrollY > window.innerHeight * 0.5) {
+    coverSection.style.display = 'none';
+    videoSection.style.display = 'none';
   }
 });
 
-// When video finishes, fade to hero
-introVideo.addEventListener('ended', () => {
-  videoSection.classList.add('fade-out');
-  setTimeout(() => {
-    videoSection.style.display = 'none';
-    heroSection.scrollIntoView({ behavior: 'smooth' });
-    enableScroll(); // allow scrolling after intro
-    fadeInMusic();
-  }, 800);
-});
-
-// Fallback: if video can’t play
-function skipVideo() {
-  videoSection.style.display = 'none';
-  coverSection.style.display = 'none';
-  heroSection.scrollIntoView({ behavior: 'smooth' });
-  enableScroll();
-  fadeInMusic();
-}
 
 
 /*** Lagu (music) ***/
