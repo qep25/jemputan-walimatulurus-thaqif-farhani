@@ -1,99 +1,3 @@
-// === INTRO VIDEO LOGIC ===
-document.addEventListener('DOMContentLoaded', () => {
-  const coverSection = document.getElementById('coverSection');
-  const coverButton = document.getElementById('coverButton');
-  const videoSection = document.getElementById('videoSection');
-  const introVideo = document.getElementById('introVideo');
-  const heroSection = document.querySelector('.hero');
-  const music = document.getElementById('bgMusic');
-
-  if (!coverSection || !coverButton || !videoSection || !introVideo || !heroSection) {
-    console.warn('Intro elements not found - skipping intro logic');
-    return;
-  }
-
-  // Debug helper
-  console.log('Intro ready — waiting for user click');
-
-  // Ensure video is muted (allows play on user click)
-  introVideo.muted = true;
-  introVideo.playsInline = true;
-
-  // Click / touch handler
-  function handleCoverClick(e) {
-    e.preventDefault();
-    console.log('Cover clicked — starting sequence');
-
-    // fade out cover image
-    coverSection.classList.add('fade-out');
-
-    // after fade hide cover and show video
-    setTimeout(() => {
-      coverSection.style.display = 'none';
-      videoSection.style.display = 'flex';
-      // ensure visible + fade-in
-      videoSection.classList.remove('fade-out');
-      videoSection.classList.add('fade-in');
-
-      // attempt to play video; fallback to skipVideo on error
-      introVideo.currentTime = 0;
-      introVideo.play().then(() => {
-        console.log('Video playing');
-      }).catch((err) => {
-        console.warn('Video play failed, skipping to hero', err);
-        skipVideo();
-      });
-
-      // if you want the music to start on click as well (unmute and fade), start here:
-      // unmute/fade after user interaction so browsers allow it
-      try {
-        music.muted = false;
-        music.play().catch(()=>{});
-      } catch(e) { /* ignore */ }
-    }, 650);
-  }
-
-  coverButton.addEventListener('click', handleCoverClick);
-  coverButton.addEventListener('touchstart', handleCoverClick);
-
-  // When video finishes: hide video, show hero, enable scroll and start music fade
-  introVideo.addEventListener('ended', () => {
-    console.log('Video ended — switching to hero');
-    videoSection.classList.add('fade-out');
-    setTimeout(() => {
-      videoSection.style.display = 'none';
-      // reveal hero and allow scroll (your existing enableScroll function)
-      if (typeof enableScroll === 'function') enableScroll();
-      // optional: scroll to main-card or hero
-      heroSection.scrollIntoView({ behavior: 'smooth' });
-      // unmute and fade music in (if you have fadeInMusic)
-      if (typeof fadeInMusic === 'function') fadeInMusic();
-    }, 800);
-  });
-
-  // If video fails, skip directly to hero
-  function skipVideo() {
-    try {
-      coverSection.style.display = 'none';
-      videoSection.style.display = 'none';
-      if (typeof enableScroll === 'function') enableScroll();
-      heroSection.scrollIntoView({ behavior: 'smooth' });
-      if (typeof fadeInMusic === 'function') fadeInMusic();
-      console.log('Skipped video, showed hero');
-    } catch (err) {
-      console.error('skipVideo error', err);
-    }
-  }
-
-  // OPTIONAL: If user refreshes and is already scrolled past hero, hide cover immediately
-  if (window.scrollY > window.innerHeight * 0.5) {
-    coverSection.style.display = 'none';
-    videoSection.style.display = 'none';
-  }
-});
-
-
-
 /*** Lagu (music) ***/
 const music = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicToggle');
@@ -161,6 +65,68 @@ function startMusicAndScroll() {
 // Enable / disable scroll helpers
 function disableScroll() { document.body.classList.add('no-scroll'); }
 function enableScroll() { document.body.classList.remove('no-scroll'); }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const coverSection = document.getElementById('coverSection');
+  const coverButton = document.getElementById('coverButton');
+  const videoSection = document.getElementById('videoSection');
+  const introVideo = document.getElementById('introVideo');
+  const heroSection = document.querySelector('.hero');
+  const music = document.getElementById('bgMusic');
+
+  // ensure video visible and not background-muted
+  introVideo.muted = false;
+  introVideo.controls = false;
+  introVideo.playsInline = true;
+
+  coverButton.addEventListener('click', () => {
+    console.log("Clicked intro image → start video");
+
+    // Fade out image cover
+    coverSection.classList.add('fade-out');
+
+    setTimeout(() => {
+      coverSection.style.display = 'none';
+      videoSection.style.display = 'block';
+      introVideo.classList.add('fade-in');
+
+      // Play video
+      introVideo.currentTime = 0;
+      introVideo.play().then(() => {
+        console.log("Intro video playing");
+      }).catch(err => {
+        console.warn("Video failed to play:", err);
+        skipVideo();
+      });
+
+      // Start background music fade-in
+      try {
+        music.volume = 0;
+        music.play();
+        fadeInMusic();
+      } catch {}
+    }, 600);
+  });
+
+  // When video ends, fade to hero
+  introVideo.addEventListener('ended', () => {
+    console.log("Video ended → show hero");
+    videoSection.classList.add('fade-out');
+    setTimeout(() => {
+      videoSection.style.display = 'none';
+      heroSection.scrollIntoView({ behavior: 'smooth' });
+      enableScroll();
+    }, 1000);
+  });
+
+  function skipVideo() {
+    coverSection.style.display = 'none';
+    videoSection.style.display = 'none';
+    enableScroll();
+    heroSection.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
 
 /*** List Ucapan */
 const SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbx2IDA-6RXkLB8wu5OXi7m9j1GoZdXfjFBeZnYmHFx_MbtarnLJwEN54p8SRG2O7K4PlA/exec";

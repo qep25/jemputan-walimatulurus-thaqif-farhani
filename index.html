@@ -31,21 +31,21 @@
     <button id="musicToggle" class="btn btn-transparent btn-sm btn-outline-dark rounded-circles">▶</button>
   </div>
 
-  <!-- INTRO COVER (image) -->
-  <div id="coverSection" class="cover-section">
-    <img src="img/intro.png" alt="Intro" class="cover-image" id="coverImage">
-    <!-- invisible overlay button that catches clicks/taps -->
-    <button id="coverButton" class="cover-button" aria-label="Play Intro"></button>
-  </div>
+<!-- INTRO COVER -->
+<div id="coverSection" class="cover-section">
+  <img src="img/intro.png" alt="Intro" class="cover-image">
+  <button id="coverButton" class="cover-button" aria-label="Play Intro"></button>
+</div>
 
-  <!-- INTRO VIDEO (hidden until play) -->
-  <div id="videoSection" class="video-section" style="display:none;">
-    <video id="introVideo" playsinline webkit-playsinline muted preload="auto">
-      <source src="img/intro.mp4" type="video/mp4">
-      <!-- fallback text -->
-      Your browser does not support the video tag.
-    </video>
-  </div>
+<!-- INTRO VIDEO -->
+<div id="videoSection" class="video-section" style="display:none;">
+  <video id="introVideo" playsinline webkit-playsinline muted preload="auto">
+    <source src="img/intro.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
 
   <!-- HERO SECTION -->
   <section class="hero">
