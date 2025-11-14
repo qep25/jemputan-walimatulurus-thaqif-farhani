@@ -228,29 +228,26 @@ function highlightCurrentSection() {
     { id: 'salamKaut', link: navLinks[4] }
   ];
 
-  const viewportCenter = window.innerHeight * 0.45;
+  const viewportCenter = window.innerHeight / 2;
 
-  // Clear all first
+  // clear all
   navLinks.forEach(a => a.classList.remove('active'));
 
+  // find first section that contains the viewport center
   for (const { id, link } of sections) {
     const el = document.getElementById(id);
     if (!el) continue;
-
     const rect = el.getBoundingClientRect();
-    const top = rect.top;
-    const bottom = rect.bottom;
-
-    // Active when section overlaps the viewport center
-    if (top <= viewportCenter && bottom > viewportCenter) {
+    if (rect.top <= viewportCenter && rect.bottom > viewportCenter) {
       link.classList.add('active');
       return;
     }
   }
 
-  // Fallback: bottom of page = last item active
-  if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 20) {
-    navLinks[navLinks.length - 1].classList.add('active');
+  // fallback: if scrolled to bottom, mark last link active
+  if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 10) {
+    const last = navLinks[navLinks.length - 1];
+    if (last) last.classList.add('active');
   }
 }
 
