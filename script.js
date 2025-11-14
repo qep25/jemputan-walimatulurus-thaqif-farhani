@@ -209,38 +209,51 @@ function hideBottomNav() {
 }
 
 window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const heroHeight = window.innerHeight * 0.4;
+  const scrollY = window.scrollY;
+  const heroHeight = window.innerHeight * 0.4;
 
-    if (scrollY > heroHeight && !navVisible) showBottomNav();
-    else if (scrollY <= heroHeight && navVisible) hideBottomNav();
+  if (scrollY > heroHeight && !navVisible) showBottomNav();
+  else if (scrollY <= heroHeight && navVisible) hideBottomNav();
 
-    highlightCurrentSection();
+  highlightCurrentSection();
 });
 
 
-
 function highlightCurrentSection() {
-    const sections = [
+  const sections = [
     { id: 'intro', link: navLinks[0] },
     { id: 'butiran', link: navLinks[1] },
     { id: 'rsvp', link: navLinks[2] },
     { id: 'ucapanLi', link: navLinks[3] },
     { id: 'salamKaut', link: navLinks[4] }
-    ];
+  ];
 
-    let scrollPos = window.scrollY + window.innerHeight / 2;
-    sections.forEach(({ id, link }) => {
-    const section = document.getElementById(id);
-    if (!section) return;
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    if (scrollPos >= top && scrollPos < top + height) {
-        navLinks.forEach(a => a.classList.remove('active'));
-        link.classList.add('active');
+  const viewportCenter = window.innerHeight * 0.45;
+
+  // Clear all first
+  navLinks.forEach(a => a.classList.remove('active'));
+
+  for (const { id, link } of sections) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+
+    const rect = el.getBoundingClientRect();
+    const top = rect.top;
+    const bottom = rect.bottom;
+
+    // Active when section overlaps the viewport center
+    if (top <= viewportCenter && bottom > viewportCenter) {
+      link.classList.add('active');
+      return;
     }
-    });
+  }
+
+  // Fallback: bottom of page = last item active
+  if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 20) {
+    navLinks[navLinks.length - 1].classList.add('active');
+  }
 }
+
 
 
 
