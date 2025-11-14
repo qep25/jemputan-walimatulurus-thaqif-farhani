@@ -223,7 +223,7 @@ window.addEventListener('scroll', () => {
 function highlightCurrentSection() {
     const sections = [
     { id: 'intro', link: navLinks[0] },
-    { id: 'lokasi', link: navLinks[1] },
+    { id: 'butiran', link: navLinks[1] },
     { id: 'rsvp', link: navLinks[2] },
     { id: 'ucapanLi', link: navLinks[3] },
     { id: 'salamKaut', link: navLinks[4] }
